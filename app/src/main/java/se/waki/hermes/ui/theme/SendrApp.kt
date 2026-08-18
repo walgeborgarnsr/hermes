@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun HermesApp() {
+fun SendrApp() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -24,7 +24,7 @@ fun HermesApp() {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "HERMES",
+                text = "SENDR",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
             )
