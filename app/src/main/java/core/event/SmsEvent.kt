@@ -1,4 +1,7 @@
 package core.event
 
-class SmsEvent {
-}
+data class SmsEvent(
+    val sender: String,
+    val message: String,
+    val receivedAt: Long
+)

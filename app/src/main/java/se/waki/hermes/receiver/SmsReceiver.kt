@@ -6,6 +6,7 @@ import android.content.Intent
 import android.util.Log
 import android.provider.Telephony
 import android.widget.Toast
+import core.event.SmsEvent
 
 class SmsReceiver : BroadcastReceiver() {
 
@@ -16,9 +17,13 @@ class SmsReceiver : BroadcastReceiver() {
         val messages = Telephony.Sms.Intents.getMessagesFromIntent(intent)
 
         for (message in messages) {
-        Log.d("Sendr", "SMS from: ${message.originatingAddress}")
-        Log.d("Sendr", "SMS text: ${message.messageBody}")
-    }
+            val event = SmsEvent(
+                sender = message.originatingAddress ?: "Unknown",
+                message = message.messageBody ?: "",
+                receivedAt = message.timestampMillis
+            )
+            Log.d("Sendr", "SMS from: ${event.sender}")
+            Log.d("Sendr", "SMS text: ${event.message}")    }
 
     }
 }
