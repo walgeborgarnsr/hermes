@@ -7,6 +7,7 @@ import android.provider.Telephony
 import android.util.Log
 import android.widget.Toast
 import core.event.SmsEvent
+import se.waki.hermes.parser.AlarmParser
 
 class SmsReceiver : BroadcastReceiver() {
 
@@ -33,7 +34,11 @@ class SmsReceiver : BroadcastReceiver() {
                         event.message.contains("RAPS", ignoreCase = true)
 
             if (isAlarm) {
+                val alarm = AlarmParser().parse(event.message)
+
                 Log.d("Sendr", "ALARM DETECTED")
+                Log.d("Sendr", "Priority: ${alarm?.priority}")
+                Log.d("Sendr", "RAPS: ${alarm?.raps}")
             }
 
             Log.d("Sendr", "SMS from: ${event.sender}")
