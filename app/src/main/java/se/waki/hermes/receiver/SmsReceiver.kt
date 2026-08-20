@@ -22,6 +22,11 @@ class SmsReceiver : BroadcastReceiver() {
                 message = message.messageBody ?: "",
                 receivedAt = message.timestampMillis
             )
+            val isAlarm = event.sender == "3315"
+
+            if (isAlarm) {
+                Log.d("Sendr", "ALARM DETECTED")
+            }
             Log.d("Sendr", "SMS from: ${event.sender}")
             Log.d("Sendr", "SMS text: ${event.message}")    }
 
