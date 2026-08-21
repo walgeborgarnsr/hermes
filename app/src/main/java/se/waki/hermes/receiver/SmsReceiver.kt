@@ -1,5 +1,5 @@
 package se.waki.hermes.receiver
-
+import se.waki.hermes.forwarding.AlarmForwarder
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -39,6 +39,11 @@ class SmsReceiver : BroadcastReceiver() {
                 Log.d("Sendr", "ALARM DETECTED")
                 Log.d("Sendr", "Priority: ${alarm?.priority}")
                 Log.d("Sendr", "RAPS: ${alarm?.raps}")
+
+                AlarmForwarder().forward(
+                    recipient = "5551234",
+                    message = event.message
+                )
             }
 
             Log.d("Sendr", "SMS from: ${event.sender}")
